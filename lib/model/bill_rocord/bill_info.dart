@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
 
+part 'bill_info.g.dart';
 @collection
 class BillInfo {
   Id id = Isar.autoIncrement;

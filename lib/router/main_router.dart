@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qing_ning/page/bill_record/bill_main_page.dart';
-import 'package:qing_ning/page/statistical_analysis/statisical_main_page.dart';
+import '../bubble_bottom_bar/bubble_bottom_bar.dart';
+import '../page/bill_record/bill_main_page.dart';
+import '../page/statistical_analysis/statisical_main_page.dart';
 
 class MainRoute extends StatefulWidget {
   const MainRoute({super.key});
@@ -19,10 +20,42 @@ class _MainPageRouteState extends State<MainRoute> {
     _currBody = _currBody ?? BillMainPage(title: "首页", appBarHeight: _appBarHeight);
     return Scaffold(
       body: _currBody,
+      // bottomNavigationBar: BubbleBottomBar(
+      //   opacity: 0.2,
+      //   currentIndex: _selectedIndex,
+      //   onTap: changePage,
+      //   borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+      //   elevation: 20,
+      //   fabLocation: BubbleBottomBarFabLocation.end,
+      //   //new
+      //   hasNotch: true,
+      //   //new
+      //   hasInk: true,
+      //   //new, gives a cute ink effect
+      //   inkColor: Colors.black12,
+      //   //optional, uses theme color if not specified
+      //   items: const <BubbleBottomBarItem>[
+      //     BubbleBottomBarItem(
+      //         backgroundColor: Colors.lightBlue,
+      //         icon: Icon(Icons.assignment_outlined, color: Colors.black54),
+      //         activeIcon: Icon(Icons.assignment_sharp),
+      //         title: Text("首页")),
+      //     BubbleBottomBarItem(
+      //         backgroundColor: Colors.lightBlue,
+      //         icon: Icon(Icons.analytics_outlined, color: Colors.black54),
+      //         activeIcon: Icon(Icons.analytics_sharp),
+      //         title: Text("发现")),
+      //     BubbleBottomBarItem(
+      //         backgroundColor: Colors.lightBlue,
+      //         icon: Icon(Icons.person_outline, color: Colors.black54),
+      //         activeIcon: Icon(Icons.person_sharp),
+      //         title: Text("我"))
+      //   ],
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.assignment_outlined), label: '首页'),
-          BottomNavigationBarItem(icon: Icon(Icons.assessment_outlined), label: '发现'),
+          BottomNavigationBarItem(icon: Icon(Icons.analytics_outlined), label: '发现'),
           BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: '我'),
         ],
         currentIndex: _selectedIndex,
@@ -32,7 +65,13 @@ class _MainPageRouteState extends State<MainRoute> {
     );
   }
 
-  void _onItemTapped(int index) {
+  void changePage(int? index) {
+    setState(() {
+      _selectedIndex = index ?? 0;
+    });
+  }
+
+  int _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -51,6 +90,7 @@ class _MainPageRouteState extends State<MainRoute> {
         );
         break;
     }
+    return _selectedIndex;
   }
 
   void _onAdd() {}
@@ -110,3 +150,27 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
+
+// floatingActionButton: FloatingActionButton(
+// onPressed: (){},
+// child: Icon(Icons.add),
+// backgroundColor: Colors.red,
+// ),
+// floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+// bottomNavigationBar: BubbleBottomBar(
+// opacity: .2,
+// currentIndex: currentIndex,
+// onTap: changePage,
+// borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+// elevation: 8,
+// fabLocation: BubbleBottomBarFabLocation.end, //new
+// hasNotch: true, //new
+// hasInk: true, //new, gives a cute ink effect
+// inkColor: Colors.black12, //optional, uses theme color if not specified
+// items: <BubbleBottomBarItem>[
+// BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.dashboard, color: Colors.black,), activeIcon: Icon(Icons.dashboard, color: Colors.red,), title: Text("Home")),
+// BubbleBottomBarItem(backgroundColor: Colors.deepPurple, icon: Icon(Icons.access_time, color: Colors.black,), activeIcon: Icon(Icons.access_time, color: Colors.deepPurple,), title: Text("Logs")),
+// BubbleBottomBarItem(backgroundColor: Colors.indigo, icon: Icon(Icons.folder_open, color: Colors.black,), activeIcon: Icon(Icons.folder_open, color: Colors.indigo,), title: Text("Folders")),
+// BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.menu, color: Colors.black,), activeIcon: Icon(Icons.menu, color: Colors.green,), title: Text("Menu"))
+// ],
+// ),

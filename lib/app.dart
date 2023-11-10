@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qing_ning/db/db_init.dart';
+import 'package:qing_ning/db/sqllite/db_init.dart';
 import 'package:qing_ning/model/bill_rocord/bill_info.dart';
 import 'package:qing_ning/router/main_router.dart';
 
@@ -15,10 +15,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "青柠记账",
-      // theme: ThemeData(primarySwatch: Colors.lightBlue),
-      home: MainRoute(),
+      theme: ThemeData(primarySwatch: Colors.lightBlue),
+      home: const MainRoute(),
     );
   }
 }

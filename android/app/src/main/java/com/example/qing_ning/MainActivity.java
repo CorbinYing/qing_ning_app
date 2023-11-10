@@ -1,4 +1,4 @@
-package com.example.qing_ning;
+package com.xiesu.qing_ning;
 
 import io.flutter.embedding.android.FlutterActivity;
 

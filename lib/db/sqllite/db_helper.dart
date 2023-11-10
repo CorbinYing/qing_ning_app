@@ -18,8 +18,10 @@ class DatabaseHelper {
   factory DatabaseHelper() => _instance ?? DatabaseHelper._internal();
 
   Future<Database> getDB() async {
+    String dbPath = await getDatabasesPath();
+    print('dbPath=$dbPath');
     //打开数据库实例
-    _db ??= openDatabase(join(await getDatabasesPath(), _dbName), version: _dbVersion);
+    _db ??= openDatabase(join(dbPath, _dbName), version: _dbVersion);
     return _db!;
   }
 }

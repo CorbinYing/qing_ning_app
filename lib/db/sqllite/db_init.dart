@@ -1,4 +1,4 @@
-import 'package:qing_ning/db/db_helper.dart';
+import 'package:qing_ning/db/sqllite/db_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'db_create_sql.dart';

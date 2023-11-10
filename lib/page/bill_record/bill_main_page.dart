@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
+import 'package:qing_ning/db/isar/isar_helper.dart';
+import 'package:qing_ning/model/bill_rocord/bill_info.dart';
 import 'package:qing_ning/page/page_appbar_flex.dart';
 
-class BillMainPage extends PageAppBarFlex {
 
+class BillMainPage extends PageAppBarFlex {
   const BillMainPage({super.key, required super.title, required super.appBarHeight}) : super();
 
   @override
@@ -51,13 +54,31 @@ class _BillMainPageState extends State<BillMainPage> {
   int _counter = 0;
 
   Future<int> getCounter() async {
+    // Isar.
+    final isar = await IsarHelper().getInstance([BillInfoSchema]);
+
+
+    double? max = await isar.billInfos.where().amountProperty().max();
+
+    _counter = max?.toInt() ?? _counter;
+
     return _counter;
   }
 
   Future<void> _incrementCounter() async {
-    setState(() {
-      _counter++;
+    _counter++;
+
+    // Isar.
+    final isar = await IsarHelper().getInstance([BillInfoSchema]);
+
+    BillInfo billInfo = BillInfo()
+      ..dateTime = DateTime.now()
+      ..amount = _counter.toDouble();
+
+    await isar.writeTxn(() async {
+      await isar.billInfos.put(billInfo); // 将新用户数据写入到 Isar
     });
+
+    setState(() {});
   }
 }
-
