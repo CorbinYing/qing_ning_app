@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qing_ning/db/sqllite/db_init.dart';
 import 'package:qing_ning/model/bill_rocord/bill_info.dart';
+import 'package:qing_ning/page/bill_record/bill_main_page.dart';
 import 'package:qing_ning/router/main_router.dart';
 
 Future<void> main() async {

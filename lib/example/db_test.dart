@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'model/Dog.dart';
+import '../model/Dog.dart';
 
 void main() async {
   // Avoid errors caused by flutter upgrade.
