@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,13 +40,13 @@ class _ECardMainPageRouteState extends State<ECardMainRoute> {
     return Scaffold(
         body: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(45),
+              preferredSize: const Size.fromHeight(45),
               child: AppBar(
                 title: const Text("ECard"),
               ),
             ),
             body: Container(
-              color: Colors.yellow,
+              color: Colors.black12,
               child: Column(
                 children: [
                   Expanded(
@@ -68,8 +70,12 @@ class _ECardMainPageRouteState extends State<ECardMainRoute> {
 
   void _incrementCounter() {
     var cart = context.read<ECardModel>();
+    String name = "name${Random.secure().nextInt(1000)}";
+    String tel = "tel${Random.secure().nextInt(1000)}";
+    String address = "address${Random.secure().nextInt(1000)}";
+    String post = "post${Random.secure().nextInt(1000)}";
 
-    ECard item = const ECard("name", "tel", "address", "post");
+    ECard item = ECard(name, tel, address, post);
     cart.add(item);
   }
 }
@@ -82,20 +88,20 @@ class _MyListItem extends StatelessWidget {
     return ListView.builder(
         itemCount: cart.eCardsList.length,
         itemBuilder: (context, index) {
-          ECard eCard = cart.eCardsList[index];
+          ECard eCard = cart.eCardsList[cart.eCardsList.length - index-1];
           return Card(
               margin: const EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    title: Text(eCard.name, style: const TextStyle(fontSize: 28)),
+                    title: Text(eCard.name, style: const TextStyle(fontSize: 38)),
                     subtitle: Text(eCard.post),
                   ),
                   ListTile(
                     title: Text(eCard.tel, style: const TextStyle(fontSize: 28)),
                   ),
                   ListTile(
-                    title: Text(eCard.address, style: const TextStyle(fontSize: 28)),
+                    title: Text(eCard.address, style: const TextStyle(fontSize: 18)),
                   )
                 ],
               ));
